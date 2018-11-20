@@ -18,7 +18,7 @@ public class UserCreatedEventListener {
 
     @EventHandler
     public void on(UserCreatedEvent userCreatedEvent){
-        kafkaTemplate.send("demo",userCreatedEvent);
+//        kafkaTemplate.send("demo",userCreatedEvent);
         System.out.println("To save in DB : "+ userCreatedEvent.getUserId());
     }
 

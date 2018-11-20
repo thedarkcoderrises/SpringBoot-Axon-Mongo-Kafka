@@ -5,7 +5,9 @@ import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 import tdcr.axon.command.CreateUserCommand;
+import tdcr.axon.command.UpdateUserCommand;
 import tdcr.axon.command.event.UserCreatedEvent;
+import tdcr.axon.command.event.UserUpdatedEvent;
 
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
@@ -15,7 +17,9 @@ public class User {
 
     @AggregateIdentifier
     private String userId;
+    private String name;
 
+    public User(){}
 
     @CommandHandler
     public User(CreateUserCommand createUserCommand) {
@@ -25,10 +29,16 @@ public class User {
     }
 
     @EventSourcingHandler
-    public void on (CreateUserCommand createUserCommand){
-        this.userId = createUserCommand.getUserId();
-        System.out.println("Event is here");
+    public void on (UserCreatedEvent userCreatedEvent){
+        this.userId = userCreatedEvent.getUserId();
+        System.out.println("userCreatedEvent is here");
     }
 
+    @EventSourcingHandler
+    public void on (UserUpdatedEvent userUpdatedEvent){
+        this.userId = userUpdatedEvent.getUserId();
+        this.name = userUpdatedEvent.getName();
+        System.out.println("userUpdatedEvent is here with name: "+userUpdatedEvent.getName());
+    }
 
 }
