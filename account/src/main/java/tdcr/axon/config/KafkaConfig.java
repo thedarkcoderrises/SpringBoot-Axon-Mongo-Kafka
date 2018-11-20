@@ -12,10 +12,10 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
+//@Configuration
 public class KafkaConfig {
 
-    @Bean
+//    @Bean
     public ProducerFactory<String, Object> producerFactory() {
         Map<String, Object> config = new HashMap();
 
@@ -27,7 +27,7 @@ public class KafkaConfig {
     }
 
 
-    @Bean
+//    @Bean
     public KafkaTemplate kafkaTemplate() {
         KafkaTemplate kt = new KafkaTemplate(producerFactory());
         return kt ;
