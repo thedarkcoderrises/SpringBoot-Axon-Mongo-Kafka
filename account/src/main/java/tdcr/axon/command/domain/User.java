@@ -5,7 +5,6 @@ import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 import tdcr.axon.command.CreateUserCommand;
-import tdcr.axon.command.UpdateUserCommand;
 import tdcr.axon.command.event.UserCreatedEvent;
 import tdcr.axon.command.event.UserUpdatedEvent;
 
@@ -41,4 +40,20 @@ public class User {
         System.out.println("userUpdatedEvent is here with name: "+userUpdatedEvent.getName());
     }
 
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
