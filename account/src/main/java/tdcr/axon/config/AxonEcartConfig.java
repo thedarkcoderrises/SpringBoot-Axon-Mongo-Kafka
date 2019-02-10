@@ -1,6 +1,5 @@
 package tdcr.axon.config;
 
-import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventsourcing.EventSourcingRepository;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.EventStore;
@@ -11,7 +10,7 @@ import tdcr.axon.command.domain.User;
 
 @Configuration
 public class AxonEcartConfig {
-    @Bean
+//    @Bean
     public EventStorageEngine storageEngine() {
         return new InMemoryEventStorageEngine();
     }
