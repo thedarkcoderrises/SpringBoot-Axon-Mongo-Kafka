@@ -1,28 +1,33 @@
-version: '2'
+version: '3'
 services:
   zookeeper:
     image: wurstmeister/zookeeper
     ports:
     - "2181:2181"
     volumes:
-    - "$PWD/kafka/ZK_Conf:/opt/zookeeper-3.4.13/conf"
-    - "$PWD/kafka/ZK_Data:/opt/zookeeper-3.4.13/data"
+    - $PWD/kafka/ZK_Conf:/opt/zookeeper-3.4.13/conf
+    - $PWD/kafka/ZK_Data:/opt/zookeeper-3.4.13/data
+    container_name: "zookeeper"
 
   kafka:
     image: wurstmeister/kafka
+    depends_on:
+    - zookeeper
     ports:
-    - "9092"
+    - "9092:9092"
     environment:
       KAFKA_ADVERTISED_HOST_NAME: localhost
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
     volumes:
-    - "/var/run/docker.sock:/var/run/docker.sock"
-    - "$PWD/kafka/Kafka_data:/kafka"
+    - /var/run/docker.sock:/var/run/docker.sock
+    - $PWD/kafka/Kafka_data:/kafka
+    container_name: "kafka"
 
   mongo:
     image: mongo
     ports:
-      - "27017:27017"
+    - "27017:27017"
     volumes:
-      - "$PWD/mongodb/localmount:/data/db"
+    - "$PWD/mongodb/localmount:/data/db"
+    container_name: "mongo"
