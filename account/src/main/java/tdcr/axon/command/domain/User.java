@@ -20,7 +20,6 @@ public class User {
 
     public User(){}
 
-    public User(String userId){this.userId=userId;}
 
     @CommandHandler
     public User(CreateUserCommand createUserCommand) {
