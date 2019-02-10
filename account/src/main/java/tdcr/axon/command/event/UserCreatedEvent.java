@@ -2,6 +2,8 @@ package tdcr.axon.command.event;
 
 public class UserCreatedEvent {
 
+    public UserCreatedEvent (){}
+
     private String userId;
 
     public UserCreatedEvent(String userId) {
@@ -10,5 +12,10 @@ public class UserCreatedEvent {
 
     public String getUserId() {
         return userId;
+    }
+
+    @Override
+    public String toString() {
+        return "userId: "+userId;
     }
 }

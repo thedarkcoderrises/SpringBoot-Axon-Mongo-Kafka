@@ -20,6 +20,7 @@ public class User {
 
     public User(){}
 
+
     @CommandHandler
     public User(CreateUserCommand createUserCommand) {
         this.userId= createUserCommand.getUserId();
