@@ -12,6 +12,9 @@ public class MongoConfig {
 
     @Bean
     public EventStorageEngine eventStore(MongoClient client) {
-        return new MongoEventStorageEngine(new DefaultMongoTemplate(client));
+        DefaultMongoTemplate mongoTemplate =
+                new DefaultMongoTemplate(client,"thedarkcoderrises",
+                        "domainevents","snapshotevents");
+        return new MongoEventStorageEngine(mongoTemplate);
     }
 }

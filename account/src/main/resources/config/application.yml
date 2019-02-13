@@ -15,6 +15,7 @@ management.security.enabled: false
 spring.data.mongodb.uri: mongodb://0.0.0.0:27017/thedarkcoderrises
 #spring.data.mongodb.uri: mongodb://mongo:27017/test
 
+kafka.url: localhost:9092
 
 ---
 spring: 
