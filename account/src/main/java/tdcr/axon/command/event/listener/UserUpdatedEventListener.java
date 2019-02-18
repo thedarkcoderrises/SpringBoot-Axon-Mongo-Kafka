@@ -14,7 +14,7 @@ public class UserUpdatedEventListener {
 
     @EventHandler
     public void on(UserUpdatedEvent userUpdatedEvent){
-        kafkaTemplate.send("demo",""+System.currentTimeMillis(), userUpdatedEvent);
+        kafkaTemplate.send("UpdateUserTopic",""+System.currentTimeMillis(), userUpdatedEvent);
         System.out.println("To save in DB : "+ userUpdatedEvent.toString());
     }
 

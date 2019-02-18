@@ -8,8 +8,14 @@ import tdcr.axon.command.event.UserUpdatedEvent;
 @Component
 public class UserEventListerner {
 
-    @KafkaListener(topics = "demo", group = "group_id")
-    public void consume(Object event) {
-        System.out.println("Consumed message: " + event.toString());
+    @KafkaListener(topics = "CreateUserTopic",containerFactory = "kafkaListenerCreateContainerFactory")
+    public void consume(UserCreatedEvent event) {
+        System.out.println("UserCreatedEvent message: " + event.toString());
+    }
+
+
+    @KafkaListener(topics = "UpdateUserTopic",containerFactory = "kafkaListenerUpdateContainerFactory")
+    public void consume(UserUpdatedEvent event) {
+        System.out.println("UserUpdatedEvent message: " + event.toString());
     }
 }

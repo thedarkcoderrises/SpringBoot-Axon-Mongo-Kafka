@@ -43,8 +43,25 @@ services:
       spring.data.mongodb.uri: mongodb://mongo/thedarkcoderrises
       kafka.url: kafka:9092
     volumes:
-    - $PWD/ecart/:/tmp
+    - $PWD/ecart/:/tmp/ecart
     links:
     - mongo:mongo
     - kafka:kafka
     container_name: "ecart"
+
+  notification:
+    image: notification:1.0
+    depends_on:
+    - kafka
+    ports:
+    - "8081:8080"
+    environment:
+      kafka.url: kafka:9092
+      AWS_ACCESS_KEY_ID: AKIAIZU4D6IUDYSYPM7Q
+      AWS_SECRET_ACCESS_KEY: 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
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $PWD/notification/:/tmp/notification
+    links:
+    - kafka:kafka
+    container_name: "notification"

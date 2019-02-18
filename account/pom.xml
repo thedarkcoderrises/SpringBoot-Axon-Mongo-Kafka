@@ -13,6 +13,7 @@
 
     <properties>
         <axon.core.version>3.0</axon.core.version>
+        <sprimg.kafka.version>2.2.0.RELEASE</sprimg.kafka.version>
     </properties>
 
     <parent>
@@ -44,6 +45,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>0.11.0.2</version>
         </dependency>
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>
