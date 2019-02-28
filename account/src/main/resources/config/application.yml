@@ -21,11 +21,10 @@ logging:
     level:
         root: ERROR
         org.springframework.web: ERROR
-        com.circuitbreaker: DEBUG
-        org.hibernate: ERROR
-    file: logs/Ecart.log
+        tdcr.axon: DEBUG
+    file: logs/ecart.log
     pattern:
-        console:
+        console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
         file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
 ---
