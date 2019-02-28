@@ -38,6 +38,7 @@ pipeline {
                      steps {
                             sh 'rm -rf /home/ec2-user/kafka/logs/*'
                             sh 'rm -rf /home/ec2-user/logs/*'
+                            sh 'cp ./KafkaZookeeperConfig/zoo.cfg /home/ec2-user/kafka/ZK_Conf'
                         }
                 }
         stage('Deployment') {
