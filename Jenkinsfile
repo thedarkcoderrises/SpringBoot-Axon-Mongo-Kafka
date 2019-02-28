@@ -33,6 +33,13 @@ pipeline {
                 }
          }
 
+        stage('Clear-Logs') {
+                    agent any
+                     steps {
+                            sh 'rm -rf /home/ec2-user/kafka/logs/*'
+                            sh 'rm -rf /home/ec2-user/logs/*'
+                        }
+                }
         stage('Deployment') {
             agent any
              steps {
