@@ -1,6 +1,8 @@
 package tdcr.axon.command.event.listener;
 
 import org.axonframework.eventhandling.EventHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
@@ -13,11 +15,17 @@ public class UserCreatedEventListener {
 
     @Autowired
     KafkaTemplate kafkaTemplate;
+    private static Logger LOG = LoggerFactory.getLogger(UserCreatedEventListener.class);
 
     @EventHandler
     public void on(UserCreatedEvent userCreatedEvent){
-        kafkaTemplate.send("CreateUserTopic",""+System.currentTimeMillis(), userCreatedEvent);
-        System.out.println("To save in DB : "+ userCreatedEvent.getUserId());
+        try{
+            kafkaTemplate.send("CreateUserTopic",""+System.currentTimeMillis(), userCreatedEvent);
+        }catch (Exception e){
+            LOG.debug("kafka.send UserCreatedEvent :{}",e.getMessage());
+        }
+
+        LOG.info("To save in DB : "+ userCreatedEvent.getUserId());
     }
 
 }

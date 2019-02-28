@@ -4,6 +4,8 @@ import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import tdcr.axon.command.CreateUserCommand;
 import tdcr.axon.command.event.UserCreatedEvent;
 import tdcr.axon.command.event.UserUpdatedEvent;
@@ -17,28 +19,28 @@ public class User {
     @AggregateIdentifier
     private String userId;
     private String name;
+    private static Logger LOG = LoggerFactory.getLogger(User.class);
 
     public User(){}
-
 
     @CommandHandler
     public User(CreateUserCommand createUserCommand) {
         this.userId= createUserCommand.getUserId();
         apply( new UserCreatedEvent(createUserCommand.getUserId()));
-        System.out.println("CreateUserCommand..");
+        LOG.info("CreateUserCommand..");
     }
 
     @EventSourcingHandler
     public void on (UserCreatedEvent userCreatedEvent){
         this.userId = userCreatedEvent.getUserId();
-        System.out.println("userCreatedEvent is here");
+        LOG.info("userCreatedEvent is here");
     }
 
     @EventSourcingHandler
     public void on (UserUpdatedEvent userUpdatedEvent){
         this.userId = userUpdatedEvent.getUserId();
         this.name = userUpdatedEvent.getName();
-        System.out.println("userUpdatedEvent is here with name: "+userUpdatedEvent.getName());
+        LOG.info("userUpdatedEvent is here with name: "+userUpdatedEvent.getName());
     }
 
 
