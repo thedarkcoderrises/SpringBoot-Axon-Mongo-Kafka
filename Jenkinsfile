@@ -39,16 +39,5 @@ pipeline {
                     sh 'sh dockercompose.sh'
                 }
         }
-
-        stage('Publish Image') {
-           agent any
-           steps {
-                sh 'docker commit $(docker ps -aqf "name=ecart") thedarkcoderrises/ecart:1.0.${BUILD_NUMBER}'
-               withDockerRegistry([ credentialsId: "thedarkcoderrises-dockerhub", url: "" ]) {
-                 sh 'docker push thedarkcoderrises/ecart:1.0.${BUILD_NUMBER}'
-               }
-                sh 'docker rmi $(docker images --filter=reference=thedarkcoderrises/ecart:1.0.${BUILD_NUMBER} --format "{{.ID}}")'
-            }
-        }
     }
  }
