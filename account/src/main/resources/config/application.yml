@@ -20,8 +20,11 @@ management.security.enabled: false
 logging:
     level:
         root: ERROR
-        org.springframework.web: ERROR
+        org.springframework.web: INFO
         tdcr.axon: DEBUG
+        org.apache.kafka: DEBUG
+        org.axonframework: INFO
+        org.mongodb: INFO
     file: logs/ecart.log
     pattern:
         console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
