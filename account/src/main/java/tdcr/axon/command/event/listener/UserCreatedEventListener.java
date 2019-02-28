@@ -20,12 +20,14 @@ public class UserCreatedEventListener {
     @EventHandler
     public void on(UserCreatedEvent userCreatedEvent){
         try{
+            LOG.info("kafka.send :userCreatedEvent");
             kafkaTemplate.send("CreateUserTopic",""+System.currentTimeMillis(), userCreatedEvent);
+            LOG.info("kafka.sent");
         }catch (Exception e){
             LOG.debug("kafka.send UserCreatedEvent :{}",e.getMessage());
         }
 
-        LOG.info("To save in DB : "+ userCreatedEvent.getUserId());
+        LOG.info("To save in DB : {}", userCreatedEvent.getUserId());
     }
 
 }

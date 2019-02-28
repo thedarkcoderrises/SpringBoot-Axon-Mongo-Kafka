@@ -19,7 +19,7 @@ public class MongoConfig {
                 new DefaultMongoTemplate(client,"thedarkcoderrises",
                         "domainevents","snapshotevents");
         MongoEventStorageEngine storageEngine= new MongoEventStorageEngine(mongoTemplate);
-        LOG.info("MongoDB initialized");
+        LOG.info("MongoDB initialized..");
         return storageEngine;
     }
 }

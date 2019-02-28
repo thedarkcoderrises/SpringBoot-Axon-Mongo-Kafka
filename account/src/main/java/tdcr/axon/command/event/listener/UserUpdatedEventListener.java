@@ -17,12 +17,14 @@ public class UserUpdatedEventListener {
     @EventHandler
     public void on(UserUpdatedEvent userUpdatedEvent){
         try{
+            LOG.info("kafka.send :userUpdatedEvent");
             kafkaTemplate.send("UpdateUserTopic",""+System.currentTimeMillis(), userUpdatedEvent);
+            LOG.info("kafka.sent");
         }catch (Exception e){
             LOG.debug("kafka.send UserUpdatedEvent :{}",e.getMessage());
         }
 
-        LOG.info("To save in DB : "+ userUpdatedEvent.toString());
+        LOG.info("To save in DB : {}", userUpdatedEvent.toString());
     }
 
 }
