@@ -30,6 +30,7 @@ public class KafkaConfig {
 
     @Bean
     public ProducerFactory<String, Object> producerFactory() {
+        LOG.info("kafka.ur: {}",kafkaURL);
         Map<String, Object> config = new HashMap();
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaURL);
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
