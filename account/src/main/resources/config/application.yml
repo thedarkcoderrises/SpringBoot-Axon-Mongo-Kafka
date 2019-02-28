@@ -17,6 +17,17 @@ management.security.enabled: false
 
 #kafka.url: localhost:9092
 
+logging:
+    level:
+        root: ERROR
+        org.springframework.web: ERROR
+        com.circuitbreaker: DEBUG
+        org.hibernate: ERROR
+    file: logs/Ecart.log
+    pattern:
+        console:
+        file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
 ---
 spring: 
     profiles: development
