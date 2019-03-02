@@ -32,15 +32,6 @@ pipeline {
                     sh 'docker build -t ecart:1.0 .'
                 }
          }
-
-        stage('Clear-Logs') {
-                    agent any
-                     steps {
-                            sh 'rm -rf /home/ec2-user/kafka/logs/*'
-                            sh 'rm -rf /home/ec2-user/logs/*'
-                            sh 'cp ./KafkaZookeeperConfig/zoo.cfg /home/ec2-user/kafka/ZK_Conf/'
-                        }
-                }
         stage('Deployment') {
             agent any
              steps {
