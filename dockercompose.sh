@@ -24,7 +24,7 @@ docker run -d --name kafka -p 9092:9092 -v /var/run/docker.sock:/var/run/docker.
 #docker restart kafka
 docker network connect bunit kafka
 
-docker run -d -p 8081:8080 -v /home/ec2-user/logs:/logs -e spring.data.mongodb.uri=mongodb://mongo/thedarkcoderrises -e kafka.url=kafka:9092 --name ecart --link=mongo --link=kafka ecart:1.0
+docker run -d -p 8081:8080 -v /home/ec2-user/logs/ecart:/logs -e spring.data.mongodb.uri=mongodb://mongo/thedarkcoderrises -e kafka.url=kafka:9092 --name ecart --link=mongo --link=kafka ecart:1.0
 docker network connect bunit ecart
 
 docker ps
