@@ -38,5 +38,11 @@ pipeline {
                     sh 'sh dockercompose.sh'
                 }
         }
+        stage('Trigger Notification job') {
+            agent any
+             steps {
+                    build job: 'notification', parameters: [[$class: 'StringParameterValue', name: 'who', value: 'ecart']]
+                }
+        }
     }
  }
